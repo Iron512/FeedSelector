@@ -5,7 +5,7 @@ myval = 50
 
 @task.route('/')
 def serve():
-	return "Ciao, flask! Il valore è " + myval
+	return "Ciao, flask! Il valore è " + str(myval)
 
 @task.route('/set/')
 def set_val():
