@@ -1,17 +1,19 @@
-from flask import Flask
+from flask import Flask, request, session, redirect, url_for
 
 task = Flask(__name__)
-myval = 50
+task.secret_key = "p0biYbC[Ebq2lKn"
 
 @task.route('/')
 def serve():
-	return "Ciao, flask! Il valore è " + str(myval)
+	if 'value' in session:
+		return "Ciao, flask! Il valore è " + session['value']
+	else:
+		return "Purtroppo il valore non è definito"
 
-@task.route('/set/')
-def set_val():
-	value = int(request.args.get('val'))
-
-	myval = value
+@task.route('/set/<val>', methods=['GET'])
+def set_val(val):
+	session['value'] = val
+	return redirect(url_for('serve'))
 
 if __name__ == '__main__':
 	task.run()
