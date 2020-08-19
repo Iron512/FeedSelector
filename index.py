@@ -1,4 +1,6 @@
 from flask import Flask, request, session, redirect, url_for
+
+import json
 import requests
 import os
 
@@ -42,7 +44,9 @@ def auth():
 
 	#ask for the short timed user auth
 	response_token = requests.post("https://api.instagram.com/oauth/access_token", data=params)
-	return response_token.text
+	response_json = json.loads(response_token.text) #probably could have been done better
+
+	return response_json["access_token"]
 
 	if 'username' not in session:
 		#procede with login
