@@ -16,7 +16,6 @@ def serve():
 	
 
 	if 'username' in session:
-		#return "Ciao, flask! Il valore è " + session['value']
 		return "z"
 	else:
 		#if no username is logged go to application login
@@ -34,7 +33,14 @@ def set_val(val):
 
 @task.route('/auth/')
 def auth():
-	return request.args.get('code')
+	if request.args.get('code') == None
+		return "This area is forbidden without a code"
+
+	session['response_code'] = request.args.get('code')
+	
+	#ask for the short timed user auth
+	session['response_short_auth'] = requests.post(, data={"data":20})
+
 	if 'username' not in session:
 		#procede with login
 		return "y"

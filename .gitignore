@@ -2,3 +2,6 @@ virtual/
 __pycache__/
 privates.py
 environment.sh
+
+tester.py
+untitled.py
