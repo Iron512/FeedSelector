@@ -31,11 +31,12 @@ def auth():
 	if request.args.get('code') == None:
 		return "This area is forbidden without a code"
 
+	redirect_for_token = str(application_home) + "authtoken/"
 	params = {
 		"client_id":application_id,
 		"client_secret":instagram_app_secret,
 		"grant_type":"authorization_code"
-		"redirect_uri":str(application_home) + "authtoken/",
+		"redirect_uri":redirect_for_token,
 		"code":request.args.get('code')
 	}
 
