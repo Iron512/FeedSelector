@@ -42,7 +42,7 @@ def auth():
 
 	#ask for the short timed user auth
 	response_token = requests.post("https://api.instagram.com/oauth/access_token", data=params)
-	return response_token.read()
+	return response_token.text
 
 	if 'username' not in session:
 		#procede with login
