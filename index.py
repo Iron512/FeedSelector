@@ -35,7 +35,7 @@ def auth():
 	params = {
 		"client_id":application_id,
 		"client_secret":instagram_app_secret,
-		"grant_type":"authorization_code"
+		"grant_type":"authorization_code",
 		"redirect_uri":redirect_for_token,
 		"code":request.args.get('code')
 	}
