@@ -64,6 +64,10 @@ def auth():
 
 	return redirect(url_for("serve"))
 
+@task.route('/logout/')
+def logout():
+	session.clear()
+
 if __name__ == '__main__':
 	task.run()
 
