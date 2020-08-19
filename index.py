@@ -8,7 +8,7 @@ task.secret_key = session_secret_key
 def serve():
 	if 'username' in session:
 		#return "Ciao, flask! Il valore è " + session['value']
-		return "w"
+		return "z"
 	else:
 		#if no username is logged go to application login
 		auth_url = "https://api.instagram.com/oauth/authorize?client_id="
