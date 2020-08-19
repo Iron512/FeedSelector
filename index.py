@@ -21,7 +21,7 @@ def serve():
 			return "Bad request. Short lived access token not retrieved"
 		else:
 			#logged correctly
-			url_get_user = "https://graph.instagram.com/"+session['user_id']
+			url_get_user = "https://graph.instagram.com/"+str(session['user_id'])
 			url_get_user = url_get_user+"?fields=username&access_token="+session['access_token']
 
 			response_user = requests.get(url_get_user)
