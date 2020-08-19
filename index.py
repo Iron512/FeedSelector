@@ -17,7 +17,7 @@ task.secret_key = session_secret_key
 @task.route('/')
 def serve():
 	if 'user_id' in session:
-		if session['username'] = -1:
+		if session['user_id'] = -1:
 			return "Bad request. Short lived access token not retrieved"
 		else:
 			#logged correctly
