@@ -1,5 +1,5 @@
 from flask import Flask, request, session, redirect, url_for
-from privates import *
+#from privates import *
 
 task = Flask(__name__)
 task.secret_key = session_secret_key
