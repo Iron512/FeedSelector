@@ -16,10 +16,18 @@ task.secret_key = session_secret_key
 
 @task.route('/')
 def serve():
-	
+	if 'user_id' in session:
+		if session['username'] = -1:
+			return "Bad request. Short lived access token not retrieved"
+		else:
+			#logged correctly
+			url_get_user = "https://graph.instagram.com/"+session['user_id']
+			url_get_user = url_get_user+"?fields=username&access_token="+session['access_token']
 
-	if 'username' in session:
-		return "z"
+			response_user = requests.get(url_get_user)
+			response_user_json = json.loads(response_user.text)
+
+			return "Welcome back," + response_user_json["username"]
 	else:
 		#if no username is logged go to application login
 		auth_url = "https://api.instagram.com/oauth/authorize?client_id="
@@ -44,17 +52,17 @@ def auth():
 
 	#ask for the short timed user auth
 	response_token = requests.post("https://api.instagram.com/oauth/access_token", data=params)
-	response_json = json.loads(response_token.text) #probably could have been done better
+	response_token_json = json.loads(response_token.text) #probably could have been done better
 
-	return response_json["access_token"]
+	if "error_type" not in response_token_json:
+		#everything ok
+		session['access_token'] = response_token_json["access_token"]
+		session['user_id'] = response_token_json["user_id"]
+	else: 
+		#something went wrong
+		session['user_id'] = -1
 
-	if 'username' not in session:
-		#procede with login
-		return "y"
-
-@task.route('/authtoken/', methods=["POST"])
-def authtoken():
-	return request.form
+	return redirect(url_for("serve"))
 
 if __name__ == '__main__':
 	task.run()
