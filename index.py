@@ -15,7 +15,8 @@ def serve():
 		auth_url = auth_url + str(application_id) + "&redirect_uri="
 		auth_url = auth_url + str(home) + "auth/&scope=user_profile,user_media&response_type=code"
 
-		return redirect(auth_url)
+		#return redirect(auth_url)
+		return auth_url
 
 @task.route('/set/<val>', methods=['GET'])
 def set_val(val):
