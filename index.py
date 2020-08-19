@@ -1,11 +1,20 @@
 from flask import Flask, request, session, redirect, url_for
-#from privates import *
+import os
 
 task = Flask(__name__)
+
+#os variables
+application_id = str(os.environ.get('APPLICATION_ID'))
+home = str(os.environ.get('APPLICATION_HOME'))
+instagram_app_secret = str(os.environ.get('INSTAGRAM_APP_SECRET'))
+session_secret_key = str(os.environ.get('SESSION_SECRET_KEY'))
+
 task.secret_key = session_secret_key
 
 @task.route('/')
 def serve():
+	
+
 	if 'username' in session:
 		#return "Ciao, flask! Il valore è " + session['value']
 		return "z"
