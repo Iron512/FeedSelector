@@ -32,9 +32,9 @@ def set_val(val):
 	session['value'] = val
 	return redirect(url_for('serve'))
 
-@task.route('/auth/<code>')
-def auth(code):
-	return code
+@task.route('/auth/')
+def auth():
+	return request.args.get('code')
 	if 'username' not in session:
 		#procede with login
 		return "y"
