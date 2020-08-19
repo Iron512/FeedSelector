@@ -68,6 +68,8 @@ def auth():
 def logout():
 	session.clear()
 
+	return redirect(url_for("serve"))
+
 if __name__ == '__main__':
 	task.run()
 
