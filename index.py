@@ -24,22 +24,17 @@ def serve():
 		auth_url = auth_url + str(home) + "auth/&scope=user_profile,user_media&response_type=code"
 
 		return redirect(auth_url)
-		
-
-@task.route('/set/<val>', methods=['GET'])
-def set_val(val):
-	session['value'] = val
-	return redirect(url_for('serve'))
-
+	
 @task.route('/auth/')
 def auth():
-	if request.args.get('code') == None
+	if request.args.get('code') == None:
 		return "This area is forbidden without a code"
 
 	session['response_code'] = request.args.get('code')
 	
 	#ask for the short timed user auth
-	session['response_short_auth'] = requests.post(, data={"data":20})
+	response_short_auth = requests.post("https://api.instagram.com/oauth/access_token", data={"data":20})
+	return response_short_auth
 
 	if 'username' not in session:
 		#procede with login
