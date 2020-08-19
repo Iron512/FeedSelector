@@ -31,7 +31,7 @@ def auth():
 	if request.args.get('code') == None:
 		return "This area is forbidden without a code"
 
-	redirect_for_token = str(application_home) + "authtoken/"
+	redirect_for_token = str(application_home) + "auth/"
 	params = {
 		"client_id":application_id,
 		"client_secret":instagram_app_secret,
@@ -41,7 +41,8 @@ def auth():
 	}
 
 	#ask for the short timed user auth
-	requests.post("https://api.instagram.com/oauth/access_token", data=params)
+	response_token = requests.post("https://api.instagram.com/oauth/access_token", data=params)
+	return response_token.form
 
 	if 'username' not in session:
 		#procede with login
